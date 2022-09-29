@@ -9,11 +9,18 @@ router.get("/", (req, res) => {
 })
 
 router.get("/new", (req, res) => {
-    res.send('User Form');
+    res.render("users/new", {firstName : "Test"});
 });
 
 router.post("/", (req, res) => {
-    res.send("create user");
+    const isValid = true;
+    if(isValid) {
+        users.push({firstName: req.body.firstName});
+        res.redirect(`/users/${users.length-1}`);
+    } else {
+        console.error("Error with form");
+        res.render('users/new', {firstName: req.body.firstName});
+    }
 });
 
 
