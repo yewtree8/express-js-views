@@ -6,10 +6,6 @@ const app = express();
 app.set('view engine', 'ejs');
 
 
-app.get('/', logger, (req, res) => {
-    res.render("index", {text: "world"});
-});
-
 const userRouter = require("./routes/users");
 
 
