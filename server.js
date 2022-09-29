@@ -2,21 +2,23 @@ const express = require("express");
 
 const app = express();
 
+
 app.set('view engine', 'ejs');
 
-app.get("/", (req, res) => {
-    console.log("here");
+
+app.get('/', logger, (req, res) => {
     res.render("index", {text: "world"});
 });
 
-
-app.get("/users", (req, res) => {
-    res.send('user list');
-})
+const userRouter = require("./routes/users");
 
 
-app.get("/users/new", (req, res) => {
-    res.send('User Form');
-})
+app.use('/users', userRouter);
+
+
+function logger(req, res, next) {
+    console.log(req.originalUrl);
+    next();
+}
 
 app.listen(3000);
