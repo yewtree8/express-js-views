@@ -5,6 +5,7 @@ const router = express.Router();
 const users = [{ name: "Mat"}, {name: "William"}];
 
 router.get("/", (req, res) => {
+    console.log(req.query.name) // On the server side we can use query params users/name?=Mat
     res.send('user list');
 })
 
